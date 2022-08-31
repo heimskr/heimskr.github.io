@@ -3,6 +3,7 @@ title: "Struct padding"
 date: 2022-08-31T02:37:29-07:00
 description: "How offsets of struct members are determined."
 tags: ["compilers", "x86_64"]
+image: "img/padding.png"
 ---
 
 Structs in C and C++ typically have padding inserted after members to ensure favorable alignment of struct members and
