@@ -5,13 +5,15 @@ summary: "A grimoire of how LLVM translates atomicrmw to x86_64 assembly."
 tags: ["assembly", "compilers", "llvm", "x86_64"]
 ---
 
+## Introduction
+
 I've been working on an [LLVM-IR-to-x86_64-assembly compiler](https://github.com/heimskr/ll2x) recently.
 One of the instructions my compiler translates is the [`atomicrmw`](https://llvm.org/docs/LangRef.html#atomicrmw-instruction)
 instruction, which does math/memory modification atomically. I tested the outputs for all the different operations
 except for the floating point ones because I've yet to implement floating point support. The results are listed below.
 Note that the generated assembly can vary depending on whether the result of the operation is used.
 
-### Full IR example
+## Full IR example
 
 ```llvm
 define void @atomic(i64 %0, i64* %1) align 2 {
@@ -22,7 +24,7 @@ define void @atomic(i64 %0, i64* %1) align 2 {
 }
 ```
 
-### The `xchg` operation
+## The `xchg` operation
 
 ```llvm
 %3 = atomicrmw volatile xchg i64* %2, i64 %0 acq_rel, align 8
@@ -33,7 +35,7 @@ define void @atomic(i64 %0, i64* %1) align 2 {
 xchgq  %rdi, (%rsi)
 ```
 
-### The `add` operation
+## The `add` operation
 
 ```llvm
 %3 = atomicrmw volatile add i64* %2, i64 %0 acq_rel, align 8
@@ -47,7 +49,7 @@ lock  xaddq  %rdi, -8(%rsp)
 lock  addq  %rdi, -8(%rsp)
 ```
 
-### The `sub` operation
+## The `sub` operation
 
 ```llvm
 %3 = atomicrmw volatile sub i64* %2, i64 %0 acq_rel, align 8
@@ -63,7 +65,7 @@ negq  %rax
 lock  addq  %rax, (%rsi)
 ```
 
-### The `and` operation
+## The `and` operation
 
 ```llvm
 %3 = atomicrmw volatile and i64* %2, i64 %0 acq_rel, align 8
@@ -81,7 +83,7 @@ jne   .LBB0_1
 lock  andq  %rdi, -8(%rsp)
 ```
 
-### The `nand` operation
+## The `nand` operation
 
 ```llvm
 %3 = atomicrmw volatile nand i64* %2, i64 %0 acq_rel, align 8
@@ -97,7 +99,7 @@ lock  cmpxchgq  %rcx, (%rsi)
 jne   .LBB0_1
 ```
 
-### The `or` operation
+## The `or` operation
 
 ```llvm
 %3 = atomicrmw volatile or i64* %2, i64 %0 acq_rel, align 8
@@ -115,7 +117,7 @@ jne   .LBB0_1
 lock  orq  %rdi, (%rsi)
 ```
 
-### The `xor` operation
+## The `xor` operation
 
 ```llvm
 %3 = atomicrmw volatile xor i64* %2, i64 %0 acq_rel, align 8
@@ -133,7 +135,7 @@ jne   .LBB0_1
 lock  xorq  %rdi, (%rsi)
 ```
 
-### The `max` operation
+## The `max` operation
 
 ```llvm
 %3 = atomicrmw volatile max i64* %2, i64 %0 acq_rel, align 8
@@ -149,7 +151,7 @@ lock    cmpxchgq  %rcx, (%rsi)
 jne     .LBB0_1
 ```
 
-### The `min` operation
+## The `min` operation
 
 ```llvm
 %3 = atomicrmw volatile min i64* %2, i64 %0 acq_rel, align 8
@@ -165,7 +167,7 @@ lock     cmpxchgq  %rcx, (%rsi)
 jne      .LBB0_1
 ```
 
-### The `umax` operation
+## The `umax` operation
 
 ```llvm
 %3 = atomicrmw volatile umax i64* %2, i64 %0 acq_rel, align 8
@@ -181,7 +183,7 @@ lock    cmpxchgq  %rcx, (%rsi)
 jne     .LBB0_1
 ```
 
-### The `umin` operation
+## The `umin` operation
 
 ```llvm
 %3 = atomicrmw volatile umin i64* %2, i64 %0 acq_rel, align 8

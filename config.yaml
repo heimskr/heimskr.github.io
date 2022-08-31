@@ -1,0 +1,149 @@
+baseurl: https://example.com
+languageCode: en-us
+theme: stack
+paginate: 5
+title: Example Site
+
+languages:
+    en:
+        languageName: English
+        title: Heimskr
+        weight: 1
+
+DefaultContentLanguage: en
+
+hasCJKLanguage: false
+
+permalinks:
+    post: /p/:slug/
+    page: /:slug/
+
+params:
+    mainSections:
+        - posts
+    featuredImageField: image
+    rssFullContent: true
+    favicon:
+
+    footer:
+        since: 2022
+        customText: <a target="_blank" href="https://icons8.com/icon/25627/discord">Discord</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+    dateFormat:
+        published: Jan 02, 2006
+        lastUpdated: Jan 02, 2006 15:04 MST
+
+    sidebar:
+        # emoji: 😤
+        subtitle: Compilers are fun.
+        avatar:
+            enabled: true
+            local: true
+            src: img/heimskr.png
+
+    article:
+        math: false
+        toc: true
+        readingTime: true
+        license:
+            enabled: true
+            default: Licensed under CC BY-SA 4.0
+
+    comments:
+        enabled: false
+
+    widgets:
+        homepage:
+            - type: search
+            - type: archives
+              params:
+                  limit: 5
+            # - type: categories
+            #   params:
+            #       limit: 10
+            - type: tag-cloud
+              params:
+                  limit: 10
+        page:
+            - type: toc
+
+    opengraph:
+        twitter:
+            # Your Twitter username
+            site: heimskr64
+
+            # Available values: summary, summary_large_image
+            card: summary_large_image
+
+    defaultImage:
+        opengraph:
+            enabled: false
+            local: false
+            src:
+
+    colorScheme:
+        # Display toggle
+        toggle: true
+
+        # Available values: auto, light, dark
+        default: auto
+
+    imageProcessing:
+        cover:
+            enabled: true
+        content:
+            enabled: true
+
+### Custom menu
+### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
+### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
+menu:
+    main: []
+
+    social:
+        - identifier: github
+          name: GitHub
+          url: https://github.com/heimskr
+          params:
+              icon: brand-github
+
+        - identifier: twitter
+          name: Twitter
+          url: https://twitter.com/heimskr64
+          params:
+              icon: brand-twitter
+
+        - identifier: discord
+          name: Discord
+          url: https://discordapp.com/users/298873767604649984
+          params:
+              icon: brand-discord
+
+related:
+    includeNewer: true
+    threshold: 60
+    toLower: false
+    indices:
+        - name: tags
+          weight: 100
+
+        - name: categories
+          weight: 200
+
+markup:
+    goldmark:
+        renderer:
+            ## Set to true if you have HTML content inside Markdown
+            unsafe: false
+    tableOfContents:
+        endLevel: 4
+        ordered: true
+        startLevel: 2
+    highlight:
+        noClasses: false
+        codeFences: true
+        guessSyntax: true
+        lineNoStart: 1
+        lineNos: true
+        lineNumbersInTable: true
+        tabWidth: 4
