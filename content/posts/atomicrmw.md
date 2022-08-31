@@ -1,8 +1,8 @@
 ---
 title: "LLVM's `atomicrmw` instruction and x86_64"
 date: 2022-08-31T01:50:33-07:00
-draft: false
 summary: "A grimoire of how LLVM translates atomicrmw to x86_64 assembly."
+tags: ["assembly", "compilers", "llvm", "x86_64"]
 ---
 
 I've been working on an [LLVM-IR-to-x86_64-assembly compiler](https://github.com/heimskr/ll2x) recently.
