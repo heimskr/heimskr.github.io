@@ -1,7 +1,7 @@
 ---
 title: "LLVM's `atomicrmw` instruction and x86_64"
 date: 2022-08-31T01:50:33-07:00
-summary: "A grimoire of how LLVM translates atomicrmw to x86_64 assembly."
+description: "A grimoire of how LLVM translates atomicrmw to x86_64 assembly."
 tags: ["assembly", "compilers", "llvm", "x86_64"]
 ---
 

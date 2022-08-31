@@ -1,7 +1,7 @@
 ---
 title: "Struct padding"
 date: 2022-08-31T02:37:29-07:00
-summary: "How offsets of struct members are determined."
+description: "How offsets of struct members are determined."
 tags: ["compilers", "x86_64"]
 ---
 
